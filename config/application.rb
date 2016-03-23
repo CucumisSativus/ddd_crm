@@ -11,5 +11,10 @@ module DddCrm
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.autoload_paths << "#{Rails.root}/app/commands"
+    config.autoload_paths << "#{Rails.root}/app/entities"
+    config.autoload_paths << "#{Rails.root}/app/queries"
+    config.autoload_paths << "#{Rails.root}/app/repositories"
+    config.autoload_paths << "#{Rails.root}/app/services"
   end
 end
