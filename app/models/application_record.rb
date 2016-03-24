@@ -4,4 +4,8 @@ class ApplicationRecord < ActiveRecord::Base
   def self.not_found_error_class
     ActiveRecord::RecordNotFound
   end
+
+  def self.record_invalid_error_class
+    ActiveRecord::RecordInvalid
+  end
 end
