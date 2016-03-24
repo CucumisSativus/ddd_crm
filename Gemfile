@@ -10,9 +10,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'rails_event_store'
-gem 'devise'
+gem 'devise', git: 'git@github.com:plataformatec/devise.git'
 gem 'haml'
 gem 'react-rails', '~> 1.6.0'
+gem 'virtus'
 group :development, :test do
   gem 'byebug'
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
