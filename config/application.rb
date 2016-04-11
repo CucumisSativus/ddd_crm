@@ -16,5 +16,6 @@ module DddCrm
     config.autoload_paths << "#{Rails.root}/app/queries"
     config.autoload_paths << "#{Rails.root}/app/repositories"
     config.autoload_paths << "#{Rails.root}/app/services"
+    config.autoload_paths << "#{Rails.root}/app/events"
   end
 end

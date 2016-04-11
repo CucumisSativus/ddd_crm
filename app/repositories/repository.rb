@@ -10,6 +10,10 @@ class Repository
     orm_adapter.all.map{ |u| map_record(u) }
   end
 
+  def count
+    orm_adapter.count
+  end
+
   def find(id)
     map_record(orm_adapter.find(id))
 
@@ -21,8 +25,8 @@ class Repository
     map_record(orm_adapter.new(params))
   end
 
-  def create!(params)
-    orm_adapter.create!(params)
+  def create!(params = {})
+    map_record(orm_adapter.create!(params))
   rescue orm_adapter.record_invalid_error_class => e
     raise Repository::RecordInvalid, e.message
   end
