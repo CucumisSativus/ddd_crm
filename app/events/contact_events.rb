@@ -1,0 +1,1 @@
+ContactCreated = Class.new(RailsEventStore::Event)

@@ -9,6 +9,7 @@ module Contacts
     attribute :user_id, Integer
 
     attr_reader :repository
+    attr_reader :result
 
     validates :name, presence: true
     validates :user_id, presence: true
@@ -28,7 +29,7 @@ module Contacts
     def execute
       remove_whitespace_from_phone
       return false unless valid?
-      repository.create!(attributes)
+      @result = repository.create!(attributes)
     end
 
     private

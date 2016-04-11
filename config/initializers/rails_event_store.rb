@@ -1,0 +1,1 @@
+RAILS_EVENT_STORE_CLIENT = RailsEventStore::Client.new

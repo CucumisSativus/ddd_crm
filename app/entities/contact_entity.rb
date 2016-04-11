@@ -1,5 +1,6 @@
 class ContactEntity
   include ::Virtus.model
+  include ActiveModel::Serialization
 
   attribute :id,  Integer
   attribute :name, String

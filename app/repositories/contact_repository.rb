@@ -4,13 +4,13 @@ class ContactRepository < Repository
   end
 
   def find_in_user_scope(user_id, id)
-    orm_adapter.by_user_id(user_id).find(id)
+    map_record(orm_adapter.by_user_id(user_id).find(id))
   rescue orm_adapter.not_found_error_class => e
     raise Repository::RecordNotFound, e.message
   end
 
   def all_in_user_scope(user_id)
-    orm_adapter.by_user_id(user_id)
+    orm_adapter.by_user_id(user_id).map{ |r| map_record(r)}
   end
 
   private
