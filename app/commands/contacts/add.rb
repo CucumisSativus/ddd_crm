@@ -15,7 +15,7 @@ module Contacts
     validates :phone, numericality: { only_integer: true }
     validates :email, format: { with: /@/, allow_blank: true}
 
-    def initialize(user, params, repository)
+    def initialize(user, params, repository = ContactRepository.new)
       @user = user
       @repository = repository
 
