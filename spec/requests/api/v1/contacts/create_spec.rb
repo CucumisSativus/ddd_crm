@@ -7,7 +7,7 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
   end
 
   let!(:user) { UserRepository.new.all.last }
-  let!(:contact_params) { {user_id: user.id, name: 'contact1', phone: '123456789', email: 'contact1@example.com'} }
+  let!(:contact_params) { {name: 'contact1', phone: '123456789', email: 'contact1@example.com'} }
   let(:repository) { ContactRepository.new }
 
   before do
