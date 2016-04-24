@@ -15,19 +15,12 @@ class DealEntity
     @id = opts[:id]
     @stage = opts[:stage]
     @summary = opts[:summary]
+    @name = opts[:name]
+    @amount = opts[:amount]
     @user_id = opts[:user_id]
     @created_at = opts[:created_at]
     @updated_at = opts[:updated_at]
-    @stage = Deals::Stage.new(Deals::STAGES[opts[:stage]]) if opts[:stage]
+    @stage = Deals::Stage.new(opts[:stage]) if opts[:stage]
   end
-
 end
 
-module Deals
-  STAGES = {
-      1 => 'Lost',
-      2 => 'Qualified',
-      3 => 'In progress',
-      4 => 'Won'
-  }
-end

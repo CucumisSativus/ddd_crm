@@ -9,12 +9,12 @@ class DealRepository < Repository
     DealEntity.new(
                   id: record.id,
                   stage: record.stage,
+                  name: record.name,
                   summary: record.summary,
                   amount: record.amount,
                   user_id: record.user_id,
                   created_at: record.created_at,
                   updated_at: record.updated_at,
-                  stage: record.stage
     )
   end
 end
