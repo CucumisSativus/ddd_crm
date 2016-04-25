@@ -3,6 +3,10 @@ class DealRepository < Repository
     super
   end
 
+  def all_in_user_scope(user_id)
+    orm_adapter.by_user_id(user_id).map{ |r| map_record(r)}
+  end
+
   private
 
   def map_record(record)
