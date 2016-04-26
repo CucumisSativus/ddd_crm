@@ -10,7 +10,7 @@ module Deals
         QUALIFIED => 'Qualified',
         IN_PROGRESS => 'In progress',
         WON => 'Won'
-    }
+    }.freeze
     include ::Virtus.model
     include ActiveModel::Serialization
 

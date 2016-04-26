@@ -76,8 +76,8 @@ Components.ContactsForm = Components.ContactsForm || React.createClass({
         },
         render: function () {
             return (
-                <form class="new_contact" id="new_contact" onSubmit={this.handleSubmit}>
-                    <div class="form-group">
+                <form className="new_contact" id="new_contact" onSubmit={this.handleSubmit}>
+                    <div className="form-group">
                         <label for="contact_name">Name</label>
                         <input className="form-control"
                                type="text"
@@ -86,7 +86,7 @@ Components.ContactsForm = Components.ContactsForm || React.createClass({
                                onChange={this.handleNameChange}
                         />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="contact_email">Email</label>
                         <input className="form-control"
                                type="text"
@@ -95,7 +95,7 @@ Components.ContactsForm = Components.ContactsForm || React.createClass({
                                onChange={this.handleEmailChange}
                         />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="contact_phone">Phone</label>
                         <input className="form-control"
                                type="text"
@@ -105,7 +105,7 @@ Components.ContactsForm = Components.ContactsForm || React.createClass({
                         />
                     </div>
 
-                    <button type="submit" class="btn btn-default">Create</button>
+                    <button type="submit" className="btn btn-default">Create</button>
                 </form>
             )
         }
