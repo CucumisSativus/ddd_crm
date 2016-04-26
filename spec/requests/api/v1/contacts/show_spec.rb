@@ -11,7 +11,7 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
 
 
   example 'user obtains his contact' do
-    get :show, id: contact.id
+    get :show, params: { id: contact.id }
 
     resp = JSON.parse(response.body)
     expect(resp['contact']['id'] ).to eq(contact.id)

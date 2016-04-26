@@ -16,7 +16,7 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
 
   example 'user creates his contact' do
 
-    post :create, contact_params
+    post :create, params: contact_params
     expect(repository.count).to eq(1)
     resp = JSON.parse(response.body)
     expect(resp['contact']['name'] ).to eq(contact_params[:name])
