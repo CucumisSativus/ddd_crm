@@ -6,7 +6,7 @@ Components.Deal = Components.Deal || React.createClass({
             name: React.PropTypes.string,
             stage_name: React.PropTypes.string,
             summary: React.PropTypes.string,
-            amount: React.PropTypes.float
+            amount: React.PropTypes.number
         },
 
         render: function () {
