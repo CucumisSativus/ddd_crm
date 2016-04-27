@@ -23,5 +23,10 @@ module Api::V1
         render json: action.errors, status: 422
       end
     end
+
+    def update
+      user = current_user
+
+    end
   end
 end
