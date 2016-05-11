@@ -23,5 +23,16 @@ module Api::V1
         render json: action.errors, status: 422
       end
     end
+
+    def update
+      user = current_user
+      action = Contacts::Update.new(user, params[:id], params)
+      action.execute
+      if action.errors.empty?
+        render json: :ok
+      else
+        render json: action.errors, status: 422
+      end
+    end
   end
 end

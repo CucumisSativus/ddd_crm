@@ -32,7 +32,8 @@ class Repository
   end
 
   def update!(repository_entity, params)
-    repository_entity.update!(params)
+    record = orm_adapter.find(id_from_entity(repository_entity))
+    record.update!(params)
   rescue orm_adapter.record_invalid_error_class => e
     raise Repository::RecordInvalid, e.message
   end
@@ -42,5 +43,13 @@ class Repository
 
   def map_record(_)
     raise NotImplementedError, 'implement in subclass'
+  end
+
+  def id_from_entity(entity)
+    if entity.is_a?(Fixnum) || entity.is_a?(String)
+      entity
+    else
+      entity.id
+    end
   end
 end

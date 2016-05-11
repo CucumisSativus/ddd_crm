@@ -76,4 +76,27 @@ RSpec.describe ContactRepository, type: :model do
       end
     end
   end
+
+  describe '#update!' do
+    let(:contact) { repository.create!({name: 'old name', email: 'old@email.com', phone: 123})}
+    let(:new_params) { {name: 'new name', email: 'new email', phone: '456'} }
+
+    it 'works for single parameter' do
+      repository.update!(contact, name: 'new name')
+      expect(repository.find(contact.id).name).to eq('new name')
+    end
+
+    it 'work for multiple parameters' do
+      repository.update!(contact, new_params)
+      record = repository.find(contact.id)
+      expect(record.name).to eq(new_params[:name])
+      expect(record.email).to eq(new_params[:email])
+      expect(record.phone).to eq(new_params[:phone])
+    end
+
+    it 'works for id' do
+      repository.update!(contact.id, name: 'new name')
+      expect(repository.find(contact.id).name).to eq('new name')
+    end
+  end
 end

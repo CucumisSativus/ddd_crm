@@ -9,6 +9,10 @@ class InMemoryAdapter
     db
   end
 
+  def find(id)
+
+  end
+
   def create!(params = {})
     @db << OpenStruct.new(params.merge(id: @db.count))
     @db.last
