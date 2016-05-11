@@ -46,7 +46,7 @@ class Repository
   end
 
   def id_from_entity(entity)
-    if entity.is_a?(Fixnum)
+    if entity.is_a?(Fixnum) || entity.is_a?(String)
       entity
     else
       entity.id

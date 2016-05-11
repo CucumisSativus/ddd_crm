@@ -32,12 +32,28 @@ Components.ContactModal = Components.ContactModal || React.createClass({
             var name = this.state.name.trim();
             var email = this.state.email.trim();
             var phone = this.state.phone.trim();
+            
+            var contact = {
+                id: this.props.id,
+                name: name,
+                email: email,
+                phone: phone
+            };
             if(!name){
                 return;
             }
 
-            this.props.onContactSubmit({name: name, email: email, phone: phone});
-            this.setState(this.getInitialState());
+            var self = this;
+            $.ajax({
+                url : '/api/v1/contacts/' + contact.id,
+                data : contact,
+                type : 'PATCH',
+                success: function(results){
+                    self.props.onContactChange();
+                }
+                
+            });
+
         },
 
 
@@ -132,7 +148,7 @@ Components.Contact = Components.Contact || React.createClass({
                               id={this.props.id}
                                          onContactChange={this.props.onContactChange}
                 />
-                <button type="button" className="btn btn-primary" onClick={this.showModal}>Primary</button>
+                <button type="button" className="btn btn-primary" onClick={this.showModal}>Edit</button>
             </div>)
         }
     });
@@ -275,6 +291,10 @@ Components.ContactsBox = Components.ContactsBox || React.createClass({
             $.post(this.props.target, contact, function(results){
                 self.callApi()
             });
+        },
+
+        handleContactUpdate: function(contact){
+
         },
 
         render: function () {
