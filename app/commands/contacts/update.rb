@@ -45,7 +45,7 @@ module Contacts
     end
 
     def is_key_used?(key)
-      @used_keys.include?(key.to_s)
+      @used_keys.map(&:to_s).include?(key.to_s)
     end
 
   end
