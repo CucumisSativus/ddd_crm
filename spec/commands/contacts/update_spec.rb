@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Contacts::Update, type: :model do
   let(:user) { UserRepository.new(InMemoryAdapter.new).create!({ email: "user@example.com", password: '123456789' }) }
   let(:repository) { ContactRepository.new }
-  let!(:record) { repository.create!(name: 'name', email: 'sda@xcz.pl', phone: '123')}
+  let!(:record) { repository.create!(name: 'name', email: 'sda@xcz.pl', phone: '123', user_id: user.id)}
   let(:id) { record.id }
 
   context 'happy path' do

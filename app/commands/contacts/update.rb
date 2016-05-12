@@ -18,7 +18,7 @@ module Contacts
       @user = user
       @id = id
       @repository = repository
-      @entity = repository.find(id)
+      @entity = repository.find_in_user_scope(user.id, id)
       @used_keys = params.keys
 
       @name = params[:name]
