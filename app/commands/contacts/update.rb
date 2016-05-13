@@ -18,7 +18,7 @@ module Contacts
       @user = user
       @id = id
       @repository = repository
-      @entity = repository.find(id)
+      @entity = repository.find_in_user_scope(user.id, id)
       @used_keys = params.keys
 
       @name = params[:name]
@@ -45,7 +45,7 @@ module Contacts
     end
 
     def is_key_used?(key)
-      @used_keys.include?(key.to_s)
+      @used_keys.map(&:to_s).include?(key.to_s)
     end
 
   end

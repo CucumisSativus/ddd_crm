@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   namespace :api do
     namespace :v1 do
-      resources :contacts, only: [:index, :show, :create, :update]
+      resources :contacts, only: [:index, :show, :create, :update, :destroy]
       resources :deals, only: [:index, :create]
     end
   end

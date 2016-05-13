@@ -36,6 +36,15 @@ class Repository
     record.update!(params)
   rescue orm_adapter.record_invalid_error_class => e
     raise Repository::RecordInvalid, e.message
+  rescue orm_adapter.not_found_error_class => e
+    raise Repository::RecordNotFound, e.message
+  end
+
+  def destroy!(repository_entity)
+    record = orm_adapter.find(id_from_entity(repository_entity))
+    record.destroy
+  rescue orm_adapter.not_found_error_class => e
+    raise Repository::RecordNotFound, e.message
   end
   private
 

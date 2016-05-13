@@ -99,4 +99,12 @@ RSpec.describe ContactRepository, type: :model do
       expect(repository.find(contact.id).name).to eq('new name')
     end
   end
+
+  describe '#destroy' do
+    let!(:contact) { repository.create!({name: 'old name', email: 'old@email.com', phone: 123})}
+
+    it 'destroys the contact' do
+      expect{ repository.destroy!(contact) }.to change { repository.count }.from(1).to(0)
+    end
+  end
 end

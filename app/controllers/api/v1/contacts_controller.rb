@@ -34,5 +34,12 @@ module Api::V1
         render json: action.errors, status: 422
       end
     end
+
+    def destroy
+      user = current_user
+      action = Contacts::Remove.new(user, params[:id])
+      action.execute
+      render json: :ok
+    end
   end
 end

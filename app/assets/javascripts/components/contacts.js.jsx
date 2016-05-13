@@ -127,9 +127,18 @@ Components.Contact = Components.Contact || React.createClass({
           return { showModal: false }
         },
         showModal: function(){
-            console.log("show modal");
-            console.log(this.state.showModal);
             this.setState({ showModal: true})
+        },
+        deleteContact: function(){
+            var self = this
+            $.ajax({
+                url : '/api/v1/contacts/' + self.props.id,
+                type : 'DELETE',
+                success: function(results){
+                    self.props.onContactRemove();
+                }
+
+            });
         },
         render: function () {
             return (<div className="contact-entity">
@@ -149,6 +158,7 @@ Components.Contact = Components.Contact || React.createClass({
                                          onContactChange={this.props.onContactChange}
                 />
                 <button type="button" className="btn btn-primary" onClick={this.showModal}>Edit</button>
+                <button type="button" className="btn btn-danger" onClick={this.deleteContact}>Remove</button>
             </div>)
         }
     });
@@ -157,7 +167,9 @@ Components.ContactsList = Components.ContactsList || React.createClass({
         displayName: "Components.ContactsList",
         propTypes: {
             apiResults: React.PropTypes.array,
-            onContactChange: React.PropTypes.func
+            onContactChange: React.PropTypes.func,
+            onContactRemove: React.PropTypes.func
+            
         },
 
         render: function () {
@@ -168,6 +180,7 @@ Components.ContactsList = Components.ContactsList || React.createClass({
                         <Components.Contact name={apiResult.name} email={apiResult.email}
                                             phone={apiResult.phone} id={apiResult.id}
                                             onContactChange={self.props.onContactChange}
+                                            onContactRemove={self.props.onContactRemove}
                         />
                     </li>
                 })}
@@ -293,16 +306,14 @@ Components.ContactsBox = Components.ContactsBox || React.createClass({
             });
         },
 
-        handleContactUpdate: function(contact){
-
-        },
-
         render: function () {
             return (
                 <div className="row">
                     <div className="col-md-8">
                         <Components.ContactsList apiResults={this.state.apiResults}
-                                                 onContactChange={this.callApi}/>
+                                                 onContactChange={this.callApi}
+                                                 onContactRemove={this.callApi}
+                        />
                     </div>
 
                     <div className="col-md-4 scollableForm">
