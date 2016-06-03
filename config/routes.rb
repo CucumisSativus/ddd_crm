@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   resources :home, only: :index do
     collection do
       get 'contacts'
-      get 'deals'
     end
   end
+
+  resources :deals
   namespace :api do
     namespace :v1 do
       resources :contacts, only: [:index, :show, :create, :update, :destroy]

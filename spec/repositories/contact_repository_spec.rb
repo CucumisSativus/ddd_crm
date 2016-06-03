@@ -101,7 +101,7 @@ RSpec.describe ContactRepository, type: :model do
   end
 
   describe '#destroy' do
-    let!(:contact) { repository.create!({name: 'old name', email: 'old@email.com', phone: 123})}
+    let!(:contact) { repository.create!({name: 'old name', summary: 'old@email.com', phone: 123})}
 
     it 'destroys the contact' do
       expect{ repository.destroy!(contact) }.to change { repository.count }.from(1).to(0)

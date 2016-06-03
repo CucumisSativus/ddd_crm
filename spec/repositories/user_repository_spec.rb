@@ -8,7 +8,7 @@ RSpec.describe UserRepository, type: :model do
     context 'when users present in the database' do
       let!(:users) do
         3.times do |n|
-          adapter.create!(email: "email#{n}@example.com", password: '12345678')
+          adapter.create!(summary: "email#{n}@example.com", password: '12345678')
         end
       end
 

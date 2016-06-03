@@ -1,0 +1,15 @@
+.container
+  = form_tag deal_path(deal.id), method: :patch do
+    .form-group
+      =label_tag :name, 'Name'
+      =text_field_tag :name, deal.name, class: 'form-control'
+    .form-group
+      =label_tag :summary, 'Summary'
+      =text_area_tag :summary, deal.summary, class: 'form-control'
+    .form-group
+      =label_tag :stage, 'Stage'
+      =select_tag :stage, options_for_select(possible_stages), class: 'form-control'
+    .form-group
+      =label_tag :amount, 'Amount'
+      =number_field_tag :amount, deal.amount, class: 'form-control'
+    =submit_tag 'Create', class: 'btn btn-default'
