@@ -22,5 +22,10 @@ class DealEntity
     @updated_at = opts[:updated_at]
     @stage = Deals::Stage.new(opts[:stage]) if opts[:stage]
   end
+
+  def stage_name
+    return '' if !stage.present?
+    stage.name
+  end
 end
 

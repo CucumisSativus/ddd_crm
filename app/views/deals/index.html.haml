@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-md-8
+      %ul.list-unstyled
+        - deals.each do |deal|
+          %div{:classname => "deal-entity"}>
+            %dl.dl-horizontal
+            %dt Name
+            %dd= deal.name
+            %dt Stage
+            %dd= deal.stage_name
+            %dt Summary
+            %dd= deal.summary
+            %dt Amount
+            %dd= deal.amount
+          =link_to 'Edit', edit_deal_path(deal.id), class: 'btn btn-primary'
+          =link_to 'Delete', deal_path(deal.id), class: 'btn btn-danger', method: :delete
+    .col-md-4.scollableForm
+      = form_tag deals_path, method: :post do
+        = render :partial => 'form_contents', locals: { possible_stages: possible_stages }

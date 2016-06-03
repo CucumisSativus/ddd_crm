@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Contacts::FindByIdInUsersScope, type: :model do
   let!(:user) { UserRepository.new.create!({ email: "user1@example.com", password: '123456789' }) }
-  let!(:user2) { UserRepository.new.create!({ email: "user2@example.com", password: '123456789' }) }
+  let!(:user2) { UserRepository.new.create!({summary: "user2@example.com", password: '123456789' }) }
   let!(:contact) { ContactRepository.new.create!( {user_id: user.id}) }
   let(:query) { Contacts::FindByIdInUsersScope.new(user, contact.id) }
 

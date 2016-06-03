@@ -1,6 +1,6 @@
-module Contacts
+module Deals
   class FindByIdInUsersScope < ::FindByIdInUsersScope
-    def initialize(user, id, repository = ContactRepository.new)
+    def initialize(user, id, repository = DealRepository.new)
       super
     end
   end
