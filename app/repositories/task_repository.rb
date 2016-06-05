@@ -21,6 +21,7 @@ class TaskRepository < Repository
                   name: record.name,
                   description: record.description,
                   user_id: record.user_id,
+                  due_date: record.due_date,
                   created_at: record.created_at,
                   updated_at: record.updated_at
     )

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   resources :deals
+  resources :tasks
+
   namespace :api do
     namespace :v1 do
       resources :contacts, only: [:index, :show, :create, :update, :destroy]

@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-md-8
+      %ul.list-unstyled
+        - tasks.each do |task|
+          %div{:classname => "task-entity"}>
+            %dl.dl-horizontal
+            %dt Name
+            %dd= task.name
+            %dt Description
+            %dd= task.description
+            %dt Due Date
+            %dd= task.due_date
+          =link_to 'Edit', edit_task_path(task.id), class: 'btn btn-primary'
+          =link_to 'Delete', task_path(task.id), class: 'btn btn-danger', method: :delete
+    .col-md-4.scollableForm
+      = form_tag tasks_path, method: :post do
+        = render :partial => 'form_contents'
