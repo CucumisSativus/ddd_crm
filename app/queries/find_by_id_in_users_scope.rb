@@ -3,7 +3,7 @@ class FindByIdInUsersScope
   attr_reader :id
   attr_reader :repository
 
-  def initialize(user, id, repository)
+  def initialize(user, id, repository = TaskRepository.new)
     @user_id = user.id
     @id = id
     @repository = repository
