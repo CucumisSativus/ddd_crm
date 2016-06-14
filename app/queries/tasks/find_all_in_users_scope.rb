@@ -1,6 +1,6 @@
-module Contacts
+module Tasks
   class FindAllInUsersScope < ::FindAllInUsersScope
-    def initialize(user, repository = ContactRepository.new)
+    def initialize(user, repository = TaskRepository.new)
       super
     end
   end
