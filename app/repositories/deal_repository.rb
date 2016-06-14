@@ -23,6 +23,7 @@ class DealRepository < Repository
                   summary: record.summary,
                   amount: record.amount,
                   user_id: record.user_id,
+                  attachments: record.attachments,
                   created_at: record.created_at,
                   updated_at: record.updated_at,
     )

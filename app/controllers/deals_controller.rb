@@ -5,6 +5,14 @@ class DealsController < ApplicationController
     render :index, locals: { deals: query.execute, possible_stages: possible_stages}
   end
 
+  def show
+    user = current_user
+    deal = Deals::FindByIdInUsersScope.new(user, params.fetch(:id)).execute
+    attachments = Attachments::FindAllInAttachableScope.new('deal', deal.id).execute
+
+    render :show, locals:  {deal: deal, attachments: attachments }
+  end
+
   def create
     user = current_user
     action = Deals::Add.new(user, params)
@@ -32,6 +40,11 @@ class DealsController < ApplicationController
     redirect_to deals_path
   end
 
+  def add_attachment
+    action = Attachments::Add.new('deal', params[:id], params)
+    action.execute
+    redirect_to deal_path(params[:id])
+  end
   private
 
   def possible_stages
