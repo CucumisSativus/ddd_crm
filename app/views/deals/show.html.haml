@@ -1,0 +1,31 @@
+.container
+  .row
+    =link_to 'Edit', edit_deal_path(deal.id), class: 'btn btn-primary'
+    =link_to 'Delete', deal_path(deal.id), class: 'btn btn-danger', method: :delete
+
+    %h3 Details
+    %div
+      %dl.dl-horizontal
+      %dt Name
+      %dd= deal.name
+      %dt Stage
+      %dd= deal.stage_name
+      %dt Summary
+      %dd= deal.summary
+      %dt Amount
+      %dd= deal.amount
+    .row
+      %div
+        %h3 Attachments
+        - attachments.each do |attachment|
+          %div
+            %a{href: attachment.document_url}
+              =attachment.document_file_name
+      %div
+        %h3 Add new Attachment
+        = form_for Attachment.new, url: add_attachment_deal_url(deal.id), html: { multipart: true } do |f|
+          .form-group
+            =f.label :document, 'Attachment'
+            =f.file_field :document
+          = submit_tag 'Add', class: 'btn btn-default'
+

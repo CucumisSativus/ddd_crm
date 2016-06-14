@@ -8,7 +8,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :deals
+  resources :deals do
+    member do
+      post :add_attachment
+    end
+  end
+
   resources :tasks
 
   namespace :api do

@@ -13,6 +13,7 @@
             %dd= deal.summary
             %dt Amount
             %dd= deal.amount
+          =link_to 'Show', deal_path(deal.id), class: 'btn btn-info'
           =link_to 'Edit', edit_deal_path(deal.id), class: 'btn btn-primary'
           =link_to 'Delete', deal_path(deal.id), class: 'btn btn-danger', method: :delete
     .col-md-4.scollableForm
