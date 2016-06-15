@@ -10,4 +10,9 @@ class UserEntity
     @email = params[:email]
     @is_admin = params[:is_admin]
   end
+
+
+  def is_admin?
+    @is_admin
+  end
 end
