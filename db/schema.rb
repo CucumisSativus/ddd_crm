@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614172410) do
+ActiveRecord::Schema.define(version: 20160615174152) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "attachable_type"
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 20160614172410) do
   add_index "event_store_events", ["event_id"], name: "index_event_store_events_on_event_id", unique: true
   add_index "event_store_events", ["stream"], name: "index_event_store_events_on_stream"
 
+  create_table "roles", force: :cascade do |t|
+    t.integer  "role_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -74,9 +80,19 @@ ActiveRecord::Schema.define(version: 20160614172410) do
 
   add_index "tasks", ["user_id"], name: "index_tasks_on_user_id"
 
+  create_table "user_roles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id"
+  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -87,9 +103,17 @@ ActiveRecord::Schema.define(version: 20160614172410) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
