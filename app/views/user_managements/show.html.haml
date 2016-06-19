@@ -1,0 +1,14 @@
+.container
+  .row
+    =link_to 'Invite users', new_user_invitation_path, class: 'btn btn-primary'
+    %ul
+      - users.each do |user|
+        %div
+          %dl.dl-horizontal
+          %dt Id
+          %dd= user.id
+          %dt Email
+          %dd= user.email
+        -unless user.is_admin?
+          =link_to 'Make admin', make_admin_user_management_path(user.id), class: 'btn btn-info', method: :post
+        =link_to 'Remove user', remove_user_user_management_path(user.id), class: 'btn btn-danger', method: :delete

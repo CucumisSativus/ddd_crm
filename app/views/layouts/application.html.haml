@@ -18,14 +18,17 @@
             %span.icon-bar
           =link_to 'The best crm', root_path, class: 'navbar-brand'
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li
-              =link_to 'Manage contacts', contacts_home_index_path
-            %li
-              =link_to 'Manage deals', deals_path
-            %li
-              =link_to 'Manage tasks', tasks_path
-
+          -if current_user
+            %ul.nav.navbar-nav
+              %li
+                =link_to 'Manage contacts', contacts_home_index_path
+              %li
+                =link_to 'Manage deals', deals_path
+              %li
+                =link_to 'Manage tasks', tasks_path
+              - if current_user_entity.is_admin?
+                %li
+                  =link_to 'Manage users', user_management_path
           %ul.nav.navbar-nav.navbar-right
             - if current_user
               %li

@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :tasks
+  resource :user_management, only: [:show] do
+    post '/:user_id/make_admin', action: :make_admin, as: :make_admin
+    delete '/:user_id/remove', action: :remove_user, as: :remove_user
+  end
 
   namespace :api do
     namespace :v1 do
