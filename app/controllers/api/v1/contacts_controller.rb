@@ -1,20 +1,20 @@
 module Api::V1
   class ContactsController < BaseController
     def index
-      user = current_user
+      user = current_user_entity
       query = Contacts::FindAllInUsersScope.new(user)
       render json: query.execute, each_serializer: ContactSerializer, root: 'contacts'
     end
 
     def show
-      user = current_user
+      user = current_user_entity
       contact_id = params[:id]
       query = Contacts::FindByIdInUsersScope.new(user, contact_id)
       render json: query.execute, serializer: ContactSerializer
     end
 
     def create
-      user = current_user
+      user = current_user_entity
       action = Contacts::Add.new(user, params)
       action.execute
       if action.errors.empty?
@@ -25,7 +25,7 @@ module Api::V1
     end
 
     def update
-      user = current_user
+      user = current_user_entity
       action = Contacts::Update.new(user, params[:id], params)
       action.execute
       if action.errors.empty?
@@ -36,7 +36,7 @@ module Api::V1
     end
 
     def destroy
-      user = current_user
+      user = current_user_entity
       action = Contacts::Remove.new(user, params[:id])
       action.execute
       render json: :ok
